@@ -60,7 +60,7 @@ clearBtn.addEventListener('click', () => clearDisplay());
 // Number button clicked
 function appendNum(num) {
     if (!operatorSelected) {
-        if (num == "0" && num1 == "") return;
+        if (num == "0" && num1 == "0") return;
         if (num1 == "0") num1 = "";
         num1 += num;
     } else {
@@ -86,9 +86,9 @@ function equalsDisplay() {
         return;
     }
     let res = operate(operator, Number(num1), Number(num2));
-    display.textContent = res;
+    display.textContent = res != null ? res : "Cannot divide by zero!";
     reset();
-    num1 = res.toString();
+    num1 = res != null ? res.toString() : "";
 }
 
 // Clear button pressed

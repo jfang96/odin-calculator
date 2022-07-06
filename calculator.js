@@ -15,7 +15,7 @@ function divide(num1, num2) {
     if (num2 == 0) {
         return null;
     }
-    return num1 / num2;
+    return Math.round(num1 / num2 * 1000)/1000;
 }
 
 function operate(operator, num1, num2) {
@@ -36,7 +36,7 @@ function operate(operator, num1, num2) {
 // Buttons
 const numberBtns = document.querySelectorAll('[number]');
 const operatorBtns = document.querySelectorAll('[operator]');
-const display = document.getElementById('display');
+const display = document.querySelector('.display');
 const equalBtn = document.getElementById('equals');
 const clearBtn = document.getElementById('clear');
 
@@ -61,9 +61,11 @@ clearBtn.addEventListener('click', () => clearDisplay());
 function appendNum(num) {
     if (!operatorSelected) {
         if (num == "0" && num1 == "") return;
+        if (num1 == "0") num1 = "";
         num1 += num;
     } else {
-        if (num == "0" && num2 == "") return;
+        if (num == "0" && num2 == "0") return;
+        if (num2 == "0") num2 = "";
         num2 += num;
     }
     setDisplay();
@@ -91,7 +93,7 @@ function equalsDisplay() {
 
 // Clear button pressed
 function clearDisplay() {
-    display.textContent = "-";
+    display.textContent = "";
     reset();
 }
 

@@ -60,8 +60,10 @@ clearBtn.addEventListener('click', () => clearDisplay());
 // Number button clicked
 function appendNum(num) {
     if (!operatorSelected) {
+        if (num == "0" && num1 == "") return;
         num1 += num;
     } else {
+        if (num == "0" && num2 == "") return;
         num2 += num;
     }
     setDisplay();
@@ -89,7 +91,7 @@ function equalsDisplay() {
 
 // Clear button pressed
 function clearDisplay() {
-    display.textContent = "0";
+    display.textContent = "-";
     reset();
 }
 
